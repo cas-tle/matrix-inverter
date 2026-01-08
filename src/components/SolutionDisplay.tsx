@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SolutionResult } from '../types/matrix';
 import { matrixToLatex } from '../utils/mathFormatter';
+import LaTeXRenderer from './LaTeXRenderer';
 
 interface SolutionDisplayProps {
     solution: SolutionResult;
@@ -30,12 +31,20 @@ const SolutionDisplay: React.FC<SolutionDisplayProps> = ({ solution }) => {
     }
 
     return (
-        <div className="solution-display">
-            <h2>✅ Final Result - Inverse Matrix</h2>
-            <div 
-                className="matrix-display"
-                dangerouslySetInnerHTML={{ __html: matrixToLatex(solution.finalMatrix) }}
-            />
+        <div className="solution-display" style={{ textAlign: 'center', padding: '40px' }}>
+            <h2 style={{ color: '#4caf50', marginBottom: '20px' }}>✅ Final Result - Inverse Matrix</h2>
+            <div style={{ 
+                backgroundColor: '#f5f5f5',
+                border: '2px solid #ddd',
+                borderRadius: '8px',
+                display: 'flex', 
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100px',
+                margin: '20px 0'
+            }}>
+                <LaTeXRenderer latex={matrixToLatex(solution.finalMatrix)} />
+            </div>
         </div>
     );
 };

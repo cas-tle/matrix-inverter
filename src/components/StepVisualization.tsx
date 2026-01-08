@@ -9,16 +9,11 @@ interface StepVisualizationProps {
 
 const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
-    const [useLatex, setUseLatex] = useState<boolean>(true);
 
     // Helper function to parse description and render LaTeX inline
     const renderDescription = (description: string) => {
         if (!description || description.trim() === '') {
             return <div style={{ fontStyle: 'italic', color: '#222' }}>No description available</div>;
-        }
-
-        if (!useLatex) {
-            return <div style={{ whiteSpace: 'pre-line' }}>{description}</div>;
         }
 
         // Split by LaTeX delimiters $...$ for inline math
@@ -94,18 +89,6 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
     return (
         <div className="step-visualization">
             <h2>Solution Steps</h2>
-            
-            <div style={{ marginBottom: '20px' }}>
-                <label style={{ marginRight: '20px', cursor: 'pointer', color: '#eee' }}>
-                    <input 
-                        type="checkbox" 
-                        checked={useLatex}
-                        onChange={(e) => setUseLatex(e.target.checked)}
-                        style={{ cursor: 'pointer' }}
-                    />
-                    {' '}Use LaTeX Rendering
-                </label>
-            </div>
             
             <div style={{ marginBottom: '20px' }}>
                 <button 
