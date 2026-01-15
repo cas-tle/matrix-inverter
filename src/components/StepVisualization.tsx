@@ -11,16 +11,22 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [useLatex, setUseLatex] = useState<boolean>(true);
 
-    // Helper to render LaTeX or plain description
+    const cleanText = (text: string) => {
+        return text.replace(/[\u0080-\uFFFF]/g, '').replace(/THE MATRIX IS SINGULAR/g, 'The matrix is singular').replace(/\*/g, '');
+    };
+
     const renderDescription = (description?: string) => {
         if (!description || description.trim() === '') {
             return <div style={{ fontStyle: 'italic', color: '#222' }}>No description available</div>;
         }
+        
+        const cleanDescription = cleanText(description);
+        
         if (!useLatex) {
-            return <div style={{ whiteSpace: 'pre-line' }}>{description}</div>;
+            return <div style={{ whiteSpace: 'pre-line' }}>{cleanDescription}</div>;
         }
 
-        const parts = description.split(/(\$[^$]+\$)/g);
+        const parts = cleanDescription.split(/(\$[^$]+\$)/g);
 
         return (
             <div style={{ whiteSpace: 'pre-line' }}>
@@ -39,7 +45,6 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
         );
     };
 
-    // Render matrix with scrollable container & flexible cells
     const renderMatrix = (matrix?: number[][], highlightedRows?: number[]) => {
         if (!matrix) return <div>No matrix to display</div>;
 
@@ -50,8 +55,8 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                 borderRadius: '5px',
                 padding: '10px',
                 margin: '10px 0',
-                overflowX: 'auto',       // scroll if too wide
-                maxWidth: '100%'          // fit container
+                overflowX: 'auto',
+                maxWidth: '100%'
             }}>
                 <table style={{ borderCollapse: 'collapse', width: 'max-content' }}>
                     <tbody>
@@ -71,7 +76,7 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                                         style={{
                                             padding: '10px 15px',
                                             textAlign: 'center',
-                                            minWidth: '40px',   // flexible for large matrices
+                                            minWidth: '40px',
                                             fontFamily: 'monospace',
                                             fontSize: '16px',
                                             fontWeight: highlightedRows?.includes(rowIndex) ? 'bold' : 'normal'
@@ -88,14 +93,12 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
         );
     };
 
-    // Safety: always render container even if steps are missing
     const step = steps[currentStep] || { description: '', matrix: [] };
 
     return (
         <div className="step-visualization">
             <h2>Solution Steps</h2>
             
-            {/* LaTeX toggle */}
             <div style={{ marginBottom: '20px' }}>
                 <label style={{ marginRight: '20px', cursor: 'pointer', color: '#eee' }}>
                     <input 
@@ -108,7 +111,6 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                 </label>
             </div>
             
-            {/* Navigation */}
             <div style={{ marginBottom: '20px' }}>
                 <button 
                     onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
@@ -116,7 +118,7 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                     className="button"
                     style={{ marginRight: '10px' }}
                 >
-                    ← Previous
+                    Previous
                 </button>
                 
                 <span style={{ 
@@ -133,11 +135,10 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                     disabled={currentStep === steps.length - 1}
                     className="button"
                 >
-                    Next →
+                    Next
                 </button>
             </div>
 
-            {/* Step display */}
             <div style={{ 
                 backgroundColor: '#f5f5f5',
                 border: '2px solid #ddd',
@@ -155,9 +156,8 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                 {renderMatrix(step.matrix, step.highlightedRows)}
             </div>
 
-            {/* All steps list */}
-            <div style={{ marginTop: '25px' }}>
-                <h4 style={{ marginBottom: '10px', color: '#eee'}}>All Steps:</h4>
+            <div style={{ marginTop: '25px', textAlign: 'center' }}>
+                <h4 style={{ marginBottom: '10px', color: '#eee' }}>All Steps:</h4>
                 <ol style={{ 
                     textAlign: 'left', 
                     maxHeight: '300px', 
@@ -168,9 +168,16 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                     border: '1px solid #e0e0e0'
                 }}>
                     {steps.map((s, index) => {
-                        const preview = s.description?.replace(/\$[^$]+\$/g, '')
+                        const preview = cleanText((s.description || '')
+                            .replace(/\$[^$]+\$/g, '')
                             .split('\n')
-                            .filter(line => line.trim() !== '')[0] || 'Step ' + (index + 1);
+                            .filter(line => line.trim() !== '')
+                            .map(line => line.trim())[0] || `Step ${index + 1}`);
+                        
+                        const isLastStep = index === steps.length - 1;
+                        const isSingular = preview.toLowerCase().includes('singular');
+                        const isError = isLastStep && isSingular;
+                        
                         return (
                             <li 
                                 key={index}
@@ -182,7 +189,8 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                                     marginBottom: '5px',
                                     borderRadius: '4px',
                                     transition: 'background-color 0.2s',
-                                    borderLeft: index === currentStep ? '3px solid #667eea' : '3px solid transparent'
+                                    borderLeft: index === currentStep ? '3px solid #667eea' : '3px solid transparent',
+                                    color: isError ? '#ff6b6b' : 'inherit'
                                 }}
                                 onMouseEnter={(e) => {
                                     if (index !== currentStep) e.currentTarget.style.backgroundColor = '#f5f5f5';
