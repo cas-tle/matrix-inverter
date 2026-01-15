@@ -8,11 +8,12 @@ interface SolutionDisplayProps {
 }
 
 const SolutionDisplay: React.FC<SolutionDisplayProps> = ({ solution }) => {
-    // Handle error case (singular matrix or other errors)
     if (solution.error) {
+        const displayError = solution.error.replace(/\*/g, '').replace(/THE MATRIX IS SINGULAR/i, 'The matrix is singular');
+        
         return (
             <div className="solution-display" style={{ textAlign: 'center', padding: '40px' }}>
-                <h2 style={{ color: '#ff6b6b', marginBottom: '20px' }}>⚠️ Error</h2>
+                <h2 style={{ color: '#ff6b6b', marginBottom: '20px' }}>Error!</h2>
                 <div style={{ 
                     backgroundColor: '#f5f5f5',
                     border: '2px solid #ddd',
@@ -22,10 +23,10 @@ const SolutionDisplay: React.FC<SolutionDisplayProps> = ({ solution }) => {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}>
                     <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#ff6b6b' }}>
-                        {solution.error}
+                        {displayError}
                     </p>
                     <p style={{ marginTop: '20px', color: '#333' }}>
-                        {solution.error === 'The matrix is singular' 
+                        {displayError.includes('singular') 
                             ? 'This matrix has no inverse because its determinant is zero.'
                             : 'Please check your input and try again.'}
                     </p>
@@ -34,15 +35,14 @@ const SolutionDisplay: React.FC<SolutionDisplayProps> = ({ solution }) => {
         );
     }
 
-    // Handle success case (matrix has inverse)
     if (!solution.finalMatrix) {
-        return null; // Don't render anything if no matrix
+        return null;
     }
 
     return (
         <div className="solution-display" style={{ padding: '40px 0' }}>
             <h2 style={{ color: '#4caf50', marginBottom: '20px', textAlign: 'center' }}>
-                ✅ Final Result - Inverse Matrix
+                Final Result - Inverse Matrix
             </h2>
             <div style={{ 
                 backgroundColor: '#f5f5f5',
