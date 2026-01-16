@@ -33,8 +33,8 @@ For each test case:
 ```
 
 **Reference Calculator Screenshot:**
-![Test Case 1 - Input](public/testcases/tc1-input.png)
-![Test Case 1 - Output](public/testcases/tc1-output.png)
+![Test Case 1 - Input](testcases/tc1-input.png)
+![Test Case 1 - Output](testcases/tc1-output.png)
 
 **Expected Inverse:**
 ```
@@ -62,8 +62,8 @@ or in decimal form:
 ```
 
 **Reference Calculator Screenshot:**
-![Test Case 2 - Input](public/testcases/tc2-input.png)
-![Test Case 2 - Output](public/testcases/tc2-output.png)
+![Test Case 2 - Input](testcases/tc2-input.png)
+![Test Case 2 - Output](testcases/tc2-output.png)
 
 **Expected Inverse:**
 ```
@@ -85,8 +85,8 @@ or in decimal form:
 ```
 
 **Reference Calculator Screenshot:**
-![Test Case 3 - Input](public/testcases/tc3-input.png)
-![Test Case 3 - Output](public/testcases/tc3-output.png)
+![Test Case 3 - Input](testcases/tc3-input.png)
+![Test Case 3 - Output](testcases/tc3-output.png)
 
 **Expected Inverse:**
 ```
@@ -111,8 +111,8 @@ or in decimal form:
 ```
 
 **Reference Calculator Screenshot:**
-![Test Case 4 - Input](public/testcases/tc4-input.png)
-![Test Case 4 - Error](public/testcases/tc4-error.png)
+![Test Case 4 - Input](testcases/tc4-input.png)
+![Test Case 4 - Error](testcases/tc4-error.png)
 
 **Expected Result:** Error message - "The matrix is singular (non-invertible)" or "Determinant is zero"
 
