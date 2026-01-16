@@ -99,7 +99,7 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
         <div className="step-visualization">
             <h2>Solution Steps</h2>
             
-            <div style={{ marginBottom: '20px' }}>
+            {/* <div style={{ marginBottom: '20px' }}>
                 <label style={{ marginRight: '20px', cursor: 'pointer', color: '#eee' }}>
                     <input 
                         type="checkbox" 
@@ -109,7 +109,7 @@ const StepVisualization: React.FC<StepVisualizationProps> = ({ steps }) => {
                     />
                     {' '}Use LaTeX Rendering
                 </label>
-            </div>
+            </div> */}
             
             <div style={{ marginBottom: '20px' }}>
                 <button 
