@@ -95,7 +95,7 @@ Error! The matrix is singular and has no inverse.
 This matrix has no inverse because its determinant is zero.
 
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -157,7 +157,7 @@ yarn preview
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### Basic Workflow
 
@@ -196,7 +196,7 @@ yarn preview
     ```
 ---
 
-## 🔧 Operation
+## Operation
 
 ###  Matrix Inverse
 
@@ -213,7 +213,7 @@ Finds the inverse matrix A⁻¹ using Gauss-Jordan elimination.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Frontend Framework
 - **React 19.2** - UI library
@@ -235,7 +235,7 @@ Finds the inverse matrix A⁻¹ using Gauss-Jordan elimination.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 matrix-solver/
@@ -278,7 +278,7 @@ matrix-solver/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -301,21 +301,21 @@ Contributions are what make the open-source community such an amazing place to l
 
 ### Contribution Ideas
 
-- 🐛 Bug fixes
-- ✨ New matrix operations (Gram-Schmidt Process, etc.)
-- 🎨 UI/UX improvements
-- 📖 Documentation enhancements
+- Bug fixes
+- New matrix operations (Gram-Schmidt Process, etc.)
+- UI/UX improvements
+- Documentation enhancements
 - Better algorithm for existing operations
 
 ---
 
-## 📜 License
+## License
 
 Distributed under the **MIT License**. See `LICENSE` file for more information.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [React](https://reactjs.org/) - The amazing UI library
 - [MathJax](https://www.mathjax.org/) - Beautiful mathematical notation
