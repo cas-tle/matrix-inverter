@@ -23,9 +23,9 @@
 - [Features](#features)
 - [Demo](#demo)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the App](#running-the-app)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
 - [Usage](#usage)
 - [Operations](#operations)
 - [Technologies Used](#technologies-used)
@@ -36,7 +36,7 @@
 
 ---
 
-##About
+## About
 
 **Matrix Inverter** is an automated tool designed to assist students and educators understand the concept of matrix inversion through an interactive interface. This tool not only shows the final answer, but also displays the detailed step-by-step solutions for matrices with varying dimensions, making it easier for learners to follow and learn from.
 
@@ -168,14 +168,14 @@ yarn preview
    - Fill in your matrix values
    - Use fractions (e.g., 1/3) or decimals
 
-4. **Solve**
+3. **Solve**
    - Click "Clear" to remove all inputs
    - Click "Calculate Inverse" to calculate the inverse of the matrix
    - Navigate through the step-by-step solution
 
 ### Example:
 
-1. Set matrix size to **3 rows × 3 columns** (square matrix)
+1. Set matrix size to **2 rows × 2 columns** (square matrix)
 2. Enter the values matrix:
    ```
    [ 1  2 ]
@@ -196,9 +196,9 @@ yarn preview
     ```
 ---
 
-## Operation
+## Operations
 
-###  Matrix Inverse
+### Matrix Inverse
 
 Finds the inverse matrix A⁻¹ using Gauss-Jordan elimination.
 
